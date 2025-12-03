@@ -8,14 +8,24 @@ import joblib
 # -----------------------------
 @st.cache_data
 def load_fighters():
-    return pd.read_csv("./dataset/ufc_fighters_cleaned.csv")
+    return pd.read_csv("./dataset/ufc_fighters_cleaned.csv"), pd.read_csv("./dataset/fighter_images.csv")
+
+
 
 @st.cache_resource
 def load_model():
     return joblib.load("./models/randomForest1.pkl"), joblib.load("./models/scaler/scaler.pkl")
 
-df_fighters = load_fighters()
+df_fighters, df_fighter_images = load_fighters()
 model, scaler = load_model()
+
+def get_image(name):
+    row = df_fighter_images[df_fighter_images["name"] == name]
+    if row.empty:
+        # Fallback silhouette image
+        return "https://i.imgur.com/UwC6k5H.png"
+    return row.img_url.iloc[0]
+
 
 # Helper
 def get_fighter(name): return df_fighters[df_fighters['name'] == name].iloc[0]
@@ -109,6 +119,7 @@ f2 = get_fighter(f2_name)
 colA, colB = st.columns(2)
 
 with colA:
+   
     st.markdown(f"""
     <div class="fighter-card red-corner">
         <h2>{f1.name}</h2>
@@ -124,6 +135,7 @@ with colA:
     """, unsafe_allow_html=True)
 
 with colB:
+ 
     st.markdown(f"""
     <div class="fighter-card blue-corner">
         <h2>{f2.name}</h2>
