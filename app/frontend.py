@@ -3,9 +3,9 @@ import pandas as pd
 import numpy as np
 import joblib
 
-# -----------------------------
+
 # Load Data & Model
-# -----------------------------
+
 @st.cache_data
 def load_fighters():
     return pd.read_csv("./dataset/ufc_fighters_cleaned.csv"), pd.read_csv("./dataset/fighter_images.csv")
@@ -47,9 +47,6 @@ def compute_delta(f1, f2):
     }])
 
 
-# -----------------------------------------------------
-# 🔥 UI SETUP (UFC THEMED)
-# -----------------------------------------------------
 st.set_page_config(page_title="UFC Fight Predictor", layout="wide")
 
 st.markdown("""
@@ -85,18 +82,15 @@ h1 { text-align: center; }
 """, unsafe_allow_html=True)
 
 
-# -----------------------------------------------------
-# 🥊 TITLE
-# -----------------------------------------------------
 st.markdown("<h1>🥋 UFC Fight Winner Prediction</h1>", unsafe_allow_html=True)
 st.write("Select two fighters to compare and generate a fight prediction.")
 
 st.divider()
 
 
-# -----------------------------------------------------
-# 🧍 Fighter Selection
-# -----------------------------------------------------
+
+#  Fighter Selection
+
 col1, col2 = st.columns(2)
 
 with col1:
@@ -113,17 +107,17 @@ f1 = get_fighter(f1_name)
 f2 = get_fighter(f2_name)
 
 
-# -----------------------------------------------------
-# 🔥 FIGHTER PROFILE CARDS
-# -----------------------------------------------------
+
+# FIGHTER PROFILE CARDS
+
 colA, colB = st.columns(2)
 
 with colA:
    
     st.markdown(f"""
     <div class="fighter-card red-corner">
-        <h2>{f1.name}</h2>
-        <p>🏋️ Weight: <b>{f1.weight_kg}</b></p>
+        <h2>{f1_name}</h2>
+        <p>🏋️ Weight: <b>{f1.weight_kg} kg</b></p>
         <p>📏 Height: <b>{f1.height_cm} cm</b></p>
         <p>🦍 Reach: <b>{f1.reach} cm</b></p>
         <p>🎯 Win Rate: <b>{round(f1.win_rate*100,1)}%</b></p>
@@ -138,8 +132,8 @@ with colB:
  
     st.markdown(f"""
     <div class="fighter-card blue-corner">
-        <h2>{f2.name}</h2>
-        <p>🏋️ Weight: <b>{f2.weight_kg}</b></p>
+        <h2>{f2_name}</h2>
+        <p>🏋️ Weight: <b>{f2.weight_kg} kg</b></p>
         <p>📏 Height: <b>{f2.height_cm} cm</b></p>
         <p>🦍 Reach: <b>{f2.reach} cm</b></p>
         <p>🎯 Win Rate: <b>{round(f2.win_rate*100,1)}%</b></p>
@@ -153,10 +147,10 @@ with colB:
 st.divider()
 
 
-# -----------------------------------------------------
-# ⚖️ DELTA TABLE
-# -----------------------------------------------------
-st.subheader("📊 Tale of the Tape — Stat Advantage")
+
+#  DELTA TABLE
+
+st.subheader("Tale of the Tape — Stat Advantage")
 
 delta_df = compute_delta(f1, f2)
 st.dataframe(delta_df.style.highlight_max(axis=1, color="lightgreen").highlight_min(axis=1, color="#ffcccc"))
@@ -165,10 +159,10 @@ st.divider()
 
 
 
-# -----------------------------------------------------
-# 🎯 PREDICTION SECTION
-# -----------------------------------------------------
-st.subheader("🥇 Fight Prediction")
+
+#  PREDICTION SECTION
+
+st.subheader("Fight Prediction")
 
 if st.button("🔥 Predict Winner"):
     scaled = scaler.transform(delta_df)
