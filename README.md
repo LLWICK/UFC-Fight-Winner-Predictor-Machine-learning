@@ -59,5 +59,5 @@ Winner prediction with confidence
 Python · Pandas · NumPy · BeautifulSoup · Scikit-learn · RandomForest · Streamlit
 
 frontend - 
-C:\Users\CHAMA COMPUTERS\Desktop\Data_Science\AI_ML\projects\UFC_fight_winner_prediction\UFC-Fight-Winner-Predictor-Machine-learning\frontend_images\Screenshot 2026-01-19 123243.png
+![Alt text](frontend_images/Screenshot 2026-01-19 123243.pngth/to/image.png)
 
