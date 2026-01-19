@@ -59,5 +59,5 @@ Winner prediction with confidence
 Python · Pandas · NumPy · BeautifulSoup · Scikit-learn · RandomForest · Streamlit
 
 frontend - 
-![Alt text](frontend_images/Screenshot 2026-01-19 123243.pngth/to/image.png)
+<img width="949" height="711" alt="architectura Diagram_3" src="[https://github.com/user-attachments/assets/c129c432-6736-494d-aeea-d8ea4646cecd](https://github.com/LLWICK/UFC-Fight-Winner-Predictor-Machine-learning/blob/main/frontend_images/Screenshot%202026-01-19%20123243.png)" />
 
